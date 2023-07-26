@@ -4,11 +4,12 @@ const connected = []
 self.addEventListener('connect', event => {
   event.source.addEventListener('message', (messageEvent) => {
 
-    if (!messageEvent?.data || typeof messageEvent.data !== 'string') {
+    const sessionId = messageEvent?.data
+
+    if (!sessionId || typeof sessionId !== 'string') {
       console.warn('Invalid message')
       return
     }
-    const sessionId = messageEvent.data
 
     const position = connected.indexOf(sessionId)
     const isNewTab = position === -1
@@ -25,6 +26,3 @@ self.addEventListener('connect', event => {
 
   event.source.start();
 }, false);
-
-
-///rq we rqw er
