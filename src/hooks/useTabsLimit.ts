@@ -5,8 +5,8 @@ import {useCallback, useLayoutEffect, useState} from "react";
 const sessionId = getSessionId()
 
 export type WorkerMessage = { sessionId: string, numberTab: number }
-export function useFirstTabControl() {
-  const [position, setPosition] = useState<number>(0);
+export function useTabsLimit(count = 1) {
+  const [position, setPosition] = useState<number>(1);
 
   const onMessage = useCallback(
     (eventMessage: MessageEvent<WorkerMessage>) => {
@@ -23,5 +23,5 @@ export function useFirstTabControl() {
     tabControlWorker.port.postMessage(sessionId);
   }, [onMessage])
 
-  return position < 2
+  return position <= count
 }

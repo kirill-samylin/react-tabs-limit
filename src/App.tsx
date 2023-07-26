@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import {useFirstTabControl} from "./hooks/useFirstTabControl";
+import {useTabsLimit} from "./hooks/useTabsLimit";
 
 
 function App() {
-  const isValid = useFirstTabControl()
+  const isValid = useTabsLimit()
   const text = isValid ? 'working tab' : 'blocked tab'
   return (
     <div className="App">
